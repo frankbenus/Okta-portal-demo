@@ -1,0 +1,138 @@
+<!-- TODO: enable forms for security options to be on and off and more mfa testing -->
+<html>
+	<head>
+		<title></title>
+		<!-- Style sheets -->
+		<link rel="stylesheet" type="text/css" href="http://portal.okta-demo.nl/css/base.css">
+		<link rel="stylesheet" type="text/css" href="http://portal.okta-demo.nl/css/style.css">
+		<link rel="stylesheet" type="text/css" href="http://portal.okta-demo.nl/css/color.css">
+		<!-- Open sourced libraries -->
+		<script src="http://portal.okta-demo.nl/js/jquery-3.1.1.min.js"></script>
+		<!-- Remote app files -->
+		<script src="http://portal.okta-demo.nl/js/gui_general.js"></script>
+		<script src="http://portal.okta-demo.nl/js/api_session.js"></script>
+		<script src="http://portal.okta-demo.nl/js/api_user.js"></script>
+		<script src="http://portal.okta-demo.nl/js/api_authentication.js"></script>
+		<script src="http://portal.okta-demo.nl/js/lib_general.js"></script>
+		<!-- local app files -->
+		<script src="config.js"></script>
+		<link href="/favicon.ico" rel="shortcut icon">
+	</head>
+	<body>
+		<!-- splash screen -->
+		<div class="app_load">
+			Loading app...
+		</div>
+		<!-- app -->
+		<div class="app_cont">
+			<!-- app header -->
+			<div class="app_head">
+				<div class="app_head_title"><span class="lbl_app_name"></span></div><div class="app_head_menu">&#9776;</div>
+			</div>
+			<!-- app messages -->
+			<div class="app_message app_message_error app_preflight_error">One or more prerequisites in Okta org not met</div>
+			<div class="app_message app_message_warning app_preflight_warning">Modifications have been made to the Okta org</div>
+			<div class="app_message app_message_error"></div>
+			<div class="app_message app_message_warning"></div>
+			<div class="app_message app_message_success"></div>
+			<!-- app menu -->
+			<div class="app_menu">
+				<ul class="app_menu_list app_menu_list_loggedin">
+					<li class="app_menu_item" target="pag_home">home</li>
+					<li class="app_menu_item" target="pag_dashboard">dashboard</li>
+					<li class="app_menu_item" target="pag_account">manage account</li>
+					<li class="app_menu_item" target="pag_logout">logout</li>
+					<li class="app_menu_item" target="pag_prerequisites">pre-flight log</li>
+				</ul>
+				<ul class="app_menu_list app_menu_list_loggedout">
+					<li class="app_menu_item_hidden" target="pag_home">home</span></li>
+					<li class="app_menu_item_hidden men_register_open" target="pag_register_open">create open account</span></li>
+					<li class="app_menu_item_hidden men_register_admin" target="pag_register_admin">request a account</span></li>
+					<li class="app_menu_item" target="pag_login">login</li>
+					<li class="app_menu_item" target="pag_prerequisites">pre-flight log</li>
+				</ul>
+			</div>
+			<!-- app content -->
+			<div class="app_body">
+			<!-- start login page -->
+				<div class="app_page pag_login">
+					<div class="app_head_cont"><img class="app_head_logo" src="" /></div>
+					<h1>Login</h1>
+					<form autocomplete="off">
+					<p>Use your usename and password to login below</p>
+					<input class="inp_authenticate_primary_username" type="text" placeholder="username" value="">
+					<input class="inp_authenticate_primary_password" type="password" placeholder="password" value="">
+					<button class="btn_authenticate_primary" type="button">Login</button>
+					</form>
+					<form class="frm_socialauthentication">
+					<p>Authenticate with your social account</p>
+					<button class="btn_authenticate_social btn_authenticate_linkedin" type="button">linkedin</button>
+					<button class="btn_authenticate_social btn_authenticate_facebook" type="button">facebook</button>
+					<button class="btn_authenticate_social btn_authenticate_googleplus" type="button">Google plus</button>
+					</form>
+				</div>
+			<!-- end login page -->
+			<!-- start dashboard page -->
+				<div class="app_page pag_dashboard">
+					<h1>Dashboard</h1>
+					<div class="grid_cont">
+						<div class="grid_row">
+						</div>
+					</div>
+				</div>			
+			<!-- end dashboard page -->
+			<!-- start manage account page -->
+				<div class="app_page pag_account">
+					<h1>Manage your account</h1>
+					<form>
+						<div class="frm_account">
+							<p>Please manage your account by setting the prefered options below.</p>
+							<h2>Personal information</h2>
+							<input class="inp_user_details inp_user_ma_fn" type="text" placeholder="first name" value="">
+							<input class="inp_user_details inp_user_ma_ln" type="text" placeholder="last name" value="">
+						</div>
+						<div class="frm_security">
+							<h2>Account and Security</h2>
+							<div class="frm_security_highrisk">
+								<select class="inp_account_bookings">
+									<option value="false">No online booking management</option>
+									<option value="true">Allow booking management online</option>
+								</select>
+							</div>
+							<div class="frm_security_mfa">
+								<select class="inp_account_mfa">
+									<option value="false">Easy login with username and password</option>
+									<option value="true">Extra security with SMS verification (free)</option>
+								</select>
+							</div>
+						</div>
+						<button class="btn_account_save" type="button">Save data</button>
+					</form>
+
+				</div>
+			<!-- end manage account page -->
+			<!-- start debug page -->
+				<div class="app_page pag_prerequisites">
+					<h1>Pre-flight debug information</h1>
+					<form>
+						<p>These pre-flight checks are performed to ensure the Okta org is setup correctly for the use cases and features that are enabled in config.js</p>
+						<ul class="app_pre_cont"></ul>
+					</form>
+				</div>				
+			<!-- end debug page -->
+			<!-- start logout page -->
+				<div class="app_page pag_logout">
+					<h1>Logout</h1>
+					<form>
+					<p>You are about to end the session and logout the current user, please confirm.</p>
+					<input class="inp_logout" type="button" value="yes" >
+					</form>
+				</div>
+			<!-- end logout page -->
+			</div>
+			<div class="app_foot"></div>
+		</div>
+	</body>
+	<!-- JQuery interaction on GUI -->
+	<script src="http://portal.okta-demo.nl/js/gui_navigate.js"></script>
+</html>
